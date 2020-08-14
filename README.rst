@@ -5,8 +5,9 @@ Small helper to set tracker positions in cykell. Usage:
 
   git clone <path>
   cd <repo>
-  cp config.py.example config.py
-  # edit config.py to set endpoint url and api key
+  # exports to set endpoint url and api key
+  export AUTH_HEADER="Api-Key foo"
+  export ENDPOINT="http://cykel/api/bike/updatelocatio"
   python3 -m venv .
   bin/pip install -r requirements.txt
   FLASK_APP=tracker.py bin/flask run

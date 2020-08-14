@@ -1,2 +1,0 @@
-ENDPOINT = 'https://openbike.eigenbaukombinat.de/api/bike/updatelocation'
-AUTH_HEADER = 'Api-Key <YOUR_KEY>'

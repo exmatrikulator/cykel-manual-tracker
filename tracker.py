@@ -1,7 +1,9 @@
-from config import AUTH_HEADER, ENDPOINT
 from flask import Flask, render_template, request, make_response
 import os
 import requests
+
+AUTH_HEADER = os.environ['AUTH_HEADER']
+ENDPOINT = os.environ['ENDPOINT']
 
 
 app = Flask("manualtracker")
@@ -23,6 +25,10 @@ def update(id, lat, lon, accuracy, voltage):
         resp = requests.post(ENDPOINT, headers=headers, data=update)
         print(resp)
         print(resp.text)
+        if resp.status_code == 200:
+            return "OK"
+        else:
+            return resp.text
 
 
 class ReverseProxied(object):
@@ -68,8 +74,8 @@ def set_tracker():
     lat = data['lat'] 
     lon = data['lon'] 
     voltage = data['voltage']
-    update(name, lat, lon, 1, voltage)
-    return "OK"
+    return update(name, lat, lon, 1, voltage)
+    #return "OK"
 
 # update('tracker2', 51.493695, 11.969930, 1, 3.6)
 
